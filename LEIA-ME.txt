@@ -1,0 +1,21 @@
+ALMOXARIFADO DIGITAL v8 - COMO COLOCAR ONLINE (compartilhado entre aparelhos)
+
+Você precisa de: Netlify (o site atual), GitHub (grátis) e Supabase (banco de dados, grátis).
+
+1) SUPABASE: crie um projeto em supabase.com (escolha região São Paulo, anote a senha do banco).
+   Em Project Settings > Database > Connection string, escolha "Transaction pooler" (URI)
+   e copie o endereço, trocando [YOUR-PASSWORD] pela senha do banco.
+2) GITHUB: crie um repositório e envie TODOS os arquivos deste ZIP mantendo as pastas
+   (principalmente netlify/functions/api.mjs, package.json e netlify.toml).
+3) NETLIFY: no projeto do site, ligue o repositório (Project configuration > Build & deploy > Link repository).
+   Build command: vazio. Publish directory: .  (o netlify.toml já informa).
+4) NETLIFY > Environment variables, crie duas variáveis:
+   DATABASE_URL = o endereço copiado do Supabase
+   ALMOX_KEY    = uma senha longa (a "chave de sincronização")
+5) Faça o deploy. Abra o site, entre como admin > Config > Sincronização online:
+   digite a chave > Ligar > "Publicar este aparelho como base".
+6) Nos outros aparelhos: Config > Sincronização > digite a mesma chave > Ligar.
+
+As tabelas são criadas sozinhas na primeira sincronização.
+Para subir um novo estoque do MV: publique o site novo e, no aparelho do gestor, abra o app uma vez com internet.
+Se a Config mostrar aviso de versão diferente, recarregue o app.
